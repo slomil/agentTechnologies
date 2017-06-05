@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html ng-app="agents">
+<head>
+<meta charset="ISO-8859-1">
+<title>Agents environment </title>
+	<script src="js/toast.js"></script>
+	<script src="js/angular.js"></script>
+	<script src="js/angular-route.js"></script>
+	<script src="js/angular-ui-router.js"></script>
+	<script src="js/jquery.min.js"></script>
+	<script src="app/main.js"></script>
+	<script src="app/services.js"></script>
+</head>
+<body ng-init="init()">
+	<ul>
+		<li ng-repeat="x in runningAgents">
+      		{{ x }}
+    	</li>
+  	</ul>
+  	
+  	<select>
+		<option ng-repeat="y in allAgents">{{y}}</option>
+	</select>
+	
+</body>
+</html>

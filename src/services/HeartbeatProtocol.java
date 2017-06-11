@@ -2,14 +2,14 @@ package services;
 
 import java.util.ArrayList;
 
-import javax.annotation.Resource;
 import javax.ejb.EJB;
 import javax.ejb.Schedule;
 import javax.ejb.Stateless;
-import javax.ejb.TimerService;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.WebTarget;
+import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 
 import org.jboss.resteasy.client.jaxrs.ResteasyWebTarget;
 
@@ -24,12 +24,15 @@ public class HeartbeatProtocol{
 	@EJB
 	private ClusterBean bean;
 
-	@Schedule(hour = "*", minute = "*/1", info = "every minute")
+	//@Schedule(hour="*", minute="*/1", info = "every minute")
 	public void checkClusters(){
 		
 		System.out.println("Miiicaaaaa");
+		String address = "localhost:8080";
+		String alias = "master";
+		AgentCenter currentCenter = new AgentCenter(address, alias);
+		currentCenter = check(currentCenter);
 		
-		AgentCenter currentCenter = ClusterBean.getLocal();
 		ArrayList<AgentCenter> centers = bean.getAllClusters();
 		
 		for(int i=0; i<centers.size(); i++){
@@ -78,4 +81,16 @@ public class HeartbeatProtocol{
         AgentService agentService = rtarget.proxy(AgentService.class);
         return agentService;
 	}	
+	
+	public AgentCenter check(AgentCenter center){
+		Client client = ClientBuilder.newClient();
+		Response responseHosts = client.target("http://localhost:8080/AT2/rest/help/get").request(MediaType.TEXT_PLAIN).get();
+
+		if(responseHosts.getStatus() != 404){
+			center.setAddress("localhost:11080");
+			center.setAlias("slave1");
+		}
+		
+		return center;
+	}
 }

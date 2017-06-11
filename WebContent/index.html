@@ -11,16 +11,18 @@
 	<script src="app/main.js"></script>
 	<script src="app/services.js"></script>
 </head>
-<body ng-init="init()">
-	<ul>
-		<li ng-repeat="x in runningAgents">
-      		{{ x }}
-    	</li>
-  	</ul>
-  	
-  	<select>
-		<option ng-repeat="y in allAgents">{{y}}</option>
-	</select>
-	
+<body >
+
+	<div ng-controller="initController" ng-init="init()">
+		<ul>
+			<li ng-repeat="x in runningAgents">
+	      		{{ x }}
+	    	</li>
+	  	</ul>
+	  	
+	  	<select>
+			<option ng-repeat="y in allAgents">{{y}}</option>
+		</select>
+	</div>
 </body>
 </html>

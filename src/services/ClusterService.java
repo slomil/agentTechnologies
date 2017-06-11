@@ -24,6 +24,7 @@ public interface ClusterService {
 	public AgentCenter getCluster();
 	
 	@POST
+	@Path("/")
 	public Response add(AgentCenter center);
 	
 	@POST

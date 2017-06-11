@@ -4,12 +4,7 @@ import java.util.ArrayList;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
-import javax.ws.rs.client.Client;
-import javax.ws.rs.client.ClientBuilder;
-import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.Response;
-
-import org.jboss.resteasy.client.jaxrs.ResteasyWebTarget;
 
 import beans.ClusterBean;
 import model.AgentCenter;

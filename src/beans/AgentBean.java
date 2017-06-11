@@ -11,16 +11,9 @@ import model.AgentType;
 @Singleton
 public class AgentBean {
 	
-	//private ArrayList<Agent> allAgents = new ArrayList<>();
 	private ArrayList<Agent> runningAgents = new ArrayList<>();
 	private ArrayList<AgentType> allTypes = new ArrayList<>();
 	
-	/*public ArrayList<Agent> getAllAgents() {
-		return allAgents;
-	}
-	public void setAllAgents(ArrayList<Agent> allAgents) {
-		this.allAgents = allAgents;
-	}*/
 	public ArrayList<Agent> getRunningAgents() {
 		return runningAgents;
 	}
@@ -35,22 +28,6 @@ public class AgentBean {
 	}
 	
 	
-	
-	/*public void addAgent(Agent agent){
-		allAgents.add(agent);
-	}
-	public void removeAgent(Agent agent){
-		allAgents.remove(agent);
-	}
-	public Agent getAgent(AID id){
-		
-		for(int i=0; i<allAgents.size(); i++){
-			if(allAgents.get(i).getId().equals(id))
-				return allAgents.get(i);
-		}
-		return null;
-	}*/
-	
 	public void addRunningAgent(Agent agent){
 		runningAgents.add(agent);
 	}
@@ -60,7 +37,7 @@ public class AgentBean {
 	public Agent getRunningAgent(AID id){
 		
 		for(int i=0; i<runningAgents.size(); i++){
-			if(runningAgents.get(i).getId().equals(id))
+			if(runningAgents.get(i).getId().getName().equals(id.getName()))
 				return runningAgents.get(i);
 		}
 		return null;
@@ -72,8 +49,12 @@ public class AgentBean {
 	}
 	
 	public void removeRunningAgents(ArrayList<Agent> agents){
-		for(int i=0; i<agents.size(); i++)
-			removeRunningAgent(agents.get(i));
+		for(int i=0; i<agents.size(); i++){
+			for(int j=0; j<runningAgents.size(); j++){
+				if(agents.get(i).getId().getName().equals(runningAgents.get(j).getId().getName()))
+					runningAgents.remove(j);
+			}
+		}
 	}
 	
 	public void addType(AgentType agentT){
@@ -96,6 +77,9 @@ public class AgentBean {
 	public void removeAllTypes(ArrayList<AgentType> types){
 		for(int i=0; i<types.size(); i++)
 			removeType(types.get(i));
+	}
+	public AgentBean getThisBean() {
+		return this;
 	}
 	
 }

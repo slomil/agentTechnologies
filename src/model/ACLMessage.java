@@ -1,10 +1,15 @@
 package model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class ACLMessage {
+public class ACLMessage implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private Performative performative;
 	private AID sender;
 	private ArrayList<AID> recivers = new ArrayList<AID>();
@@ -135,6 +140,10 @@ public class ACLMessage {
 	}
 	public void setReplyBy(Long replyBy) {
 		this.replyBy = replyBy;
+	}
+	
+	public Object[] getAllPerformatives (){
+		return Performative.values();
 	}
 	
 	public enum Performative {

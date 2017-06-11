@@ -3,11 +3,11 @@ agentService.factory('agentFactory', function($http){
 	var factory = [];
 	
 	factory.getAllAgentTypes = function(host){
-		return $http.get(host+'/AT2/rest/agents/getAllAgentTypes');
+		return $http.get("http://"+host+'/AT2/rest/agents/classes');
 	};
 	
-	factory.getAllRunningAgents = function(){
-		return $http.get(host+'/AT2/rest/agents/getRunningAgents');
+	factory.getAllRunningAgents = function(host){
+		return $http.get("http://"+host+'/AT2/rest/agents/running');
 	}
 	
 	factory.startAgent = function(type, name){

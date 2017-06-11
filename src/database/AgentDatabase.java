@@ -16,13 +16,13 @@ public class AgentDatabase {
 	@PostConstruct
 	public void addDatabase(){
 		ArrayList<AgentType> masterList = new ArrayList<AgentType>();
-		masterList.add(new AgentType("Ping",""));
-		masterList.add(new AgentType("Pong",""));
+		masterList.add(new AgentType("Ping","Ping"));
+		masterList.add(new AgentType("Pong","Pong"));
 		database.put("master", masterList);
 		
 		ArrayList<AgentType> slaveList1 = new ArrayList<AgentType>();
-		slaveList1.add(new AgentType("Reducer",""));
-		slaveList1.add(new AgentType("Ping",""));
+		slaveList1.add(new AgentType("Reducer","Reducer"));
+		slaveList1.add(new AgentType("Ping","Ping"));
 		database.put("slave1", slaveList1);
 		
 	}

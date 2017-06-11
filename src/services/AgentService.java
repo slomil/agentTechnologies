@@ -2,13 +2,13 @@ package services;
 
 import java.util.ArrayList;
 
-import javax.websocket.server.PathParam;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -39,14 +39,19 @@ public interface AgentService {
 	
 	@POST
 	@Path("/running")
-	public Response addRunningAgents(ArrayList<Agent> agent);
+	public Response addRunningAgents(ArrayList<Agent> agents);
+	
+	@DELETE
+	@Path("/running")
+	public Response removeRunningAgents(ArrayList<Agent> agents);
 	
 	@PUT
 	@Path("/running/{type}/{name}")
-	public Response startAgent(@PathParam("type") String type, @PathParam("alias") String alias);
+	public Response startAgent(@PathParam("type") String type, @PathParam("name") String name);
 	
-	@DELETE
+	@POST
 	@Path("/running/{aid}")
 	public Response stopAgent(@PathParam("aid") String aid);
+
 	
 }

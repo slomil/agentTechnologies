@@ -1,6 +1,6 @@
 var agentService = angular.module('agents', []);
 
-agentService.controller('agentController', function($scope, agentFactory, $location){
+agentService.controller('initController', function($scope, agentFactory, $location){
 	
 	
 	
@@ -12,7 +12,7 @@ agentService.controller('agentController', function($scope, agentFactory, $locat
 			$scope.allAgents = data.data;
 		});
 		
-		agentFactoru.getAllRunningAgents(host).success(function(data){
+		agentFactory.getAllRunningAgents(host).success(function(data){
 			$scope.runningAgents = data.data;
 		});
 	}

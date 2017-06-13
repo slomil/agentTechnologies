@@ -4,8 +4,8 @@ import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.ws.rs.core.Response;
 
-import jms.JMSService;
 import model.ACLMessage;
+import services.jms.JMSService;
 
 @Stateless
 public class MessageServiceImpl implements MessageService{

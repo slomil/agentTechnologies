@@ -9,8 +9,12 @@ import model.Agent;
 @Stateful
 public class Ping extends Agent {
 
-	private ACLMessage pingMessage;
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	public Ping() {
 		super();
 	}
@@ -19,17 +23,12 @@ public class Ping extends Agent {
 	public void handleMessage(ACLMessage message) {
 		super.handleMessage(message);
 		
-		System.out.println("Ping "+message.getSender().getName()+" sends REQUEST message");
 		AID pongId = message.getReplyTo();
-        pingMessage = new ACLMessage();
+        ACLMessage pingMessage = new ACLMessage();
         pingMessage.setPerformative(ACLMessage.Performative.REQUEST);
         pingMessage.setSender(pongId);
         pingMessage.getRecivers().add(pongId);
-        pingMessage.setContent(" Caocao PONG :) ");
+        pingMessage.setContent(" Cao pong ");
         
-	}
-	
-	public void setContent(String content){
-		pingMessage.setContent("Hello Pong! How are you?");
 	}
 }

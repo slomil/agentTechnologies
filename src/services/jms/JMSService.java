@@ -1,4 +1,4 @@
-package jms;
+package services.jms;
 
 import javax.annotation.Resource;
 import javax.ejb.Stateless;

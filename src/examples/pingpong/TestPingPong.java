@@ -1,5 +1,8 @@
 package examples.pingpong;
 
+import java.util.ArrayList;
+
+import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.POST;
@@ -7,11 +10,13 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
+import beans.AgentBean;
 import model.ACLMessage;
 import model.AID;
 import model.Agent;
 import model.AgentCenter;
 import model.AgentType;
+import services.jms.MessageHelper;
 
 @Stateless
 @Path("/pingpong")
@@ -23,7 +28,11 @@ public class TestPingPong extends Agent {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-
+	@EJB
+	private AgentBean bean;
+	@EJB
+	private MessageHelper helper;
+	
 	@POST
 	@Override
 	public void handleMessage(ACLMessage message) {
@@ -37,12 +46,19 @@ public class TestPingPong extends Agent {
 		
 		Ping ping = new Ping();
 		ping.setId(pingAid);
+		bean.addRunningAgent(ping);
 		Pong pong = new Pong();
 		pong.setId(pongAid);
+		bean.addRunningAgent(pong);
+		ArrayList<AID> receivers = new ArrayList<>();
+		receivers.add(pongAid);
 		
 		ACLMessage acl = new ACLMessage();
+		acl.setPerformative(message.getPerformative());
+		acl.setContent(message.getContent());
+		acl.setSender(pingAid);
 		acl.setReplyTo(pingAid);
-		ping.handleMessage(acl);
-		
+		acl.setRecivers(receivers);
+		helper.sendMessage(acl);
 	}
 }

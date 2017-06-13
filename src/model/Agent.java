@@ -8,7 +8,7 @@ public class Agent implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private AID id;
+	protected AID id;
 
 	public Agent(){
 		
@@ -31,7 +31,7 @@ public class Agent implements Serializable {
 	
 	public void handleMessage(ACLMessage message){
 		
-		ACLMessage.Performative perf = message.getPerformative();
+		/*ACLMessage.Performative perf = message.getPerformative();
 		String agent = message.getSender().getName();
 		switch (perf) {
 		case ACCEPT_PROPOSAL:
@@ -103,7 +103,7 @@ public class Agent implements Serializable {
 		default:
 			System.out.println(perf +" MESSAGE FROM "+ agent);
 			break;
-		}
+		}*/
 	}
 	
 }

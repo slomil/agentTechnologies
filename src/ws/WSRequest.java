@@ -5,18 +5,12 @@ import model.AgentType;
 public class WSRequest {
 	
 	private String request;
-	private String address;
+	private String host;
 	private String agentType;
 	private String name;
 	
 	public WSRequest() {
 		// TODO Auto-generated constructor stub
-	}
-	public String getAddress() {
-		return address;
-	}
-	public void setAddress(String address) {
-		this.address = address;
 	}
 
 	public String getRequest() {
@@ -41,6 +35,14 @@ public class WSRequest {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public String getHost() {
+		return host;
+	}
+
+	public void setHost(String host) {
+		this.host = host;
 	}
 	
 	

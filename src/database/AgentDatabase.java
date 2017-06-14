@@ -22,6 +22,7 @@ public class AgentDatabase {
 		
 		ArrayList<AgentType> slaveList1 = new ArrayList<AgentType>();
 		slaveList1.add(new AgentType("Reducer","Reducer"));
+		slaveList1.add(new AgentType("Ping","Ping"));
 		database.put("slave1", slaveList1);
 		
 	}

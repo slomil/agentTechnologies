@@ -77,6 +77,7 @@ agentService.controller('initController', function($scope, $window, agentFactory
 	
 	$scope.update=function(){
 		
+		agenti=$scope.runningAgents;
 		var host = $location.host() + ":" + $location.port();
 		
 		var selectBox = document.getElementById("select1");
@@ -202,7 +203,8 @@ agentService.controller('initController', function($scope, $window, agentFactory
 			"inReplyTo":document.getElementById("inReplyTo").value,
 			"replyBy":document.getElementById("replyBy").value
 		});
-		$("#textarea").val(message);
+		
+		document.getElementById("textarea").value+=message+"\n";
 		
 		agentFactory.sendMessage(message).success(function(data){
 			
@@ -212,8 +214,19 @@ agentService.controller('initController', function($scope, $window, agentFactory
 	
 	
 	$scope.clearMessages=function(){
-				
+	document.getElementById("textarea").value="";			
 	}
+	
+	
+	$scope.stop=function(x){
+		/*agentFactory.stop(x).success(function(data){
+			
+		});*/
+		var index=$scope.runningAgents.indexOf(x);
+		$scope.runningAgents.splice(index, 1);
+		
+	}
+	
 	
 });
 

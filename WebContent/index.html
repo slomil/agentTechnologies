@@ -21,13 +21,16 @@
 		</select>
 		
 		<br><br><br>Pokrenuti agenti:<br>
-		<ul>
-			<li ng-repeat="x in runningAgents">
-	      		{{ x }} 
-	    	</li>
-	  	</ul>
-	  	
-	<div style="margin-left:500px;margin-top:-80px;">
+		<table>
+	      		<tr ng-repeat="x in runningAgents" >
+	      		<td>{{ x }}</td><td><button ng-click="stop(x)" >Zaustavi agenta</button></td>
+	      		</tr>
+	  	</table>
+	
+	<input type="radio" name="WebSocket" id="ws" value="WebSocket">
+
+	
+	<div style="margin-left:500px;margin-top:-100px;">
 	Messages:
 		<table>
 		<tr><td>Performative:</td><td>
@@ -50,7 +53,7 @@
 		<tr><td><button ng-click="sendMessage()">Send ACL message</button></td></tr>
 		</table>
 		</div>
-		<br><br><br>
+		<br>
 		<div style="margin-left:500px;margin-top:0px;">
 		Console messages:
 		<table>
